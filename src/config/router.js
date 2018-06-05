@@ -11,9 +11,15 @@ import Quest from '../main/quest';
 const HomeStack = StackNavigator({
 	Home: {
 		screen: Home,
+		navigationOptions: {
+			tabBarLabel: 'Home'
+		}
 	},
 	Score: {
 		screen: Score,
+		navigationOptions: {
+			tabBarLabel: 'Youomo Score'
+		}
 	}
 });
 
@@ -66,6 +72,19 @@ const MenuTabs = createBottomTabNavigator({
 	      	),
 		}	
 	},
+}, {
+  initialRouteName: 'Home',
 })
+
+MenuTabs.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = false;
+  if (navigation.state.index > 0) {
+    tabBarVisible = true;
+  }
+
+  return {
+    tabBarVisible,
+  };
+};
 
 export default MenuTabs;
